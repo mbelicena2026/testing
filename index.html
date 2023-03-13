@@ -9,119 +9,168 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sail&display=swap" rel="stylesheet">
-<style>
-body {
-    background-image: url(background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#background {
-    display: block;
-    margin-right: auto;
-    margin-left: -70px;
-    width: 70%;
-    margin-top: 35px;
-    box-sizing: border-box;
-    border: 3px solid black;
-    border-radius: 20px;
-}
-
-.card {
-    background-color: rgba(251,219,222, 255);
-    backdrop-filter: blur(15px);
-    border: 3px solid black;
-    border-radius: 20px;
-    margin-left: 960px;
-    margin-top: -650px;
-    margin-right: 40px;
-    height: 650px;
-    text-align: center;
-}
-
-h1 {
-    font-family: 'Sail', cursive;
-}
-
-img {
-    width: 120px;
-}
-
-        /* Style the timer */
-        .game-timer {
-            font-size: 20px;
-            margin-bottom: 20px;
+    <style>
+        body {
+            background-image: url(https://cdn.discordapp.com/attachments/912732499069775992/1084505176393666601/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
         }
 
-        /* Style the result message */
-        .game-result {
-            font-size: 24px;
-            margin-top: 20px;
+        #background {
+            display: block;
+            margin-right: auto;
+            margin-left: -70px;
+            width: 70%;
+            margin-top: 35px;
+            box-sizing: border-box;
+            border: 3px solid black;
+            border-radius: 20px;
         }
+
+        .card {
+            background-color: rgba(251, 219, 222, 255);
+            backdrop-filter: blur(15px);
+            border: 3px solid black;
+            border-radius: 20px;
+            margin-left: 960px;
+            margin-top: -650px;
+            margin-right: 40px;
+            height: 650px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Sail', cursive;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        @media only screen and (max-width: 1080px) {
+            body {
+                background-image: url(https://cdn.discordapp.com/attachments/912732499069775992/1084505176393666601/background.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+                background-position: center;
+            }
+
+            .card {
+                margin-left: 570px;
+                width: 300px;
+                margin-top: -350px;
+                height: 350px;
+            }
+        
+            #background {
+                margin-top: 100px;
+                margin-bottom: auto;
+            }
+            img {
+                width: 40px;
+            }
+        } 
+            h1 {
+                font-size: 30px;
+            }
+
+            .card-subtitle {
+                font-size: 10px;
+            }
+
+            .game-timer {
+                font-size: 10px;
+            }
+
+            .game-result {
+                font-size: 24px;
+                margin-top: 10px;
+            }
     </style>
     <script>
 
-        // Set the x and y coordinates of the object
-        var objectX = 200;
-        var objectY = 150;
+        // Items
+        var cup = false;
+        var watercolor = false;
+        var briefcase = false;
+        var book = false;
+        var glasses = false;
+        var laptop = false;
+        var pen = false;
+        var pencil = false;
+        var scissors = false;
+        var calculator = false;
+        var eraser = false;
+        var watch = false;
 
-        // Set the width and height of the object
-        var objectWidth = 200;
-        var objectHeight = 100;
-
-        // Set the flag to check if the object has been clicked
-        var objectClicked = false;
-
-
+        // Timer 
         var remainingTime = 60;
         var timerInterval;
 
-		function startTimer() {
-			timerInterval = setInterval(function() {
-				remainingTime--;
-				document.getElementById("timer").innerHTML = remainingTime;
-				if (remainingTime === 0) {
-					clearInterval(timerInterval);
+        // Timer
+        function startTimer() {
+            timerInterval = setInterval(function () {
+                remainingTime--;
+                document.getElementById("timer").innerHTML = remainingTime;
+                if (remainingTime === 0) {
+                    clearInterval(timerInterval);
                     location.reload();
-					alert("You ran out of time! Too bad.");
-				}
-			}, 1000);
-		}
+                    alert("You ran out of time! Too bad.");
+                }
+            }, 1000);
+        }
 
-		function checkObject() {
-			clearInterval(timerInterval);
-			alert("Congratulations! You found the object.");
-		}
+        // Coords :skull:
+        function trackClick(event) {
+            var x = event.clientX;
+            var y = event.clientY;
+            document.getElementById("coord").innerHTML = "X,Y: " + x + ", " + y;
+        }
 
-		startTimer();
+        startTimer();
     </script>
 </head>
 
 <body>
-
     <div class="container" id="leftside">
-        <img src="https://cdn.discordapp.com/attachments/912732499069775992/1083964779741331506/Find_Objects_Visual_Game__Solution_In_Hidden_Layer_Stock_Vector_-_Illustration_of_grunge_teen__44875186.jpg" alt="background" id="background" onclick="trackClick(event)" onmouseout="clearstuff()">
+        <img src="https://cdn.discordapp.com/attachments/912732499069775992/1083964779741331506/Find_Objects_Visual_Game__Solution_In_Hidden_Layer_Stock_Vector_-_Illustration_of_grunge_teen__44875186.jpg"
+            alt="background" id="background" onclick="trackClick(event)">
     </div>
     <div class="card">
         <div class="card-body">
-        <h1 class="card-title">Mystery Detective</h1>
-        <div class="game-container">
-            <p class="game-timer">Time remaining: <span id="timer">60</span> seconds</p>
-            <p class="game-result" id="result"></p>
-        </div>
-        <div class="card-subtitle">Find the following items within the time limit:</div>
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084282860967579648/Screenshot_2023-03-12_085745-removebg-preview_1.png" alt="Cup" id="cup">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084283890006499368/Screenshot_2023-03-12_091544-removebg-preview.png" alt="Watercolor Palette" id="watercolor">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084283536523137034/Screenshot_2023-03-12_091307-removebg-preview_1.png" alt="Briefcase" id="briefcase">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084282819020325014/book.png" alt="Book" id="book">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284360364130385/Screenshot_2023-03-12_091803-removebg-preview.png" alt="Glasses" id="glasses">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284803416862720/Screenshot_2023-03-12_092011-removebg-preview.png" alt="Laptop" id="laptop">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084286102904512593/Screenshot_2023-03-12_092346-removebg-preview_1.png" alt="Pen" id="pen">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084286324195987507/Screenshot_2023-03-12_092605-removebg-preview.png" alt="Pencil" id="pencil">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284664790921216/Screenshot_2023-03-12_091905-removebg-preview.png" alt="Scissors" id="scissors">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285541555638282/Screenshot_2023-03-12_092315-removebg-preview.png" alt="Calculator" id="calculator">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285275976519721/Screenshot_2023-03-12_092142-removebg-preview.png" alt="Eraser" id="eraser">
-            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285427118264330/Screenshot_2023-03-12_092242-removebg-preview.png" alt="Watch" id="watch">
+            <h1 class="card-title">Mystery Detective</h1>
+            <div class="card-subtitle"> 
+                <p class="game-timer">Time remaining: <span id="timer">60</span> seconds</p>
+                <p class="game-result" id="result"></p>
+<p>Find the following items within the time limit:</p></div>
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084282860967579648/Screenshot_2023-03-12_085745-removebg-preview_1.png"
+                alt="Cup" id="cup">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084283890006499368/Screenshot_2023-03-12_091544-removebg-preview.png"
+                alt="Watercolor Palette" id="watercolor">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084283536523137034/Screenshot_2023-03-12_091307-removebg-preview_1.png"
+                alt="Briefcase" id="briefcase">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084282819020325014/book.png" alt="Book"
+                id="book">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284360364130385/Screenshot_2023-03-12_091803-removebg-preview.png"
+                alt="Glasses" id="glasses">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284803416862720/Screenshot_2023-03-12_092011-removebg-preview.png"
+                alt="Laptop" id="laptop">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084286102904512593/Screenshot_2023-03-12_092346-removebg-preview_1.png"
+                alt="Pen" id="pen">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084286324195987507/Screenshot_2023-03-12_092605-removebg-preview.png"
+                alt="Pencil" id="pencil">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084284664790921216/Screenshot_2023-03-12_091905-removebg-preview.png"
+                alt="Scissors" id="scissors">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285541555638282/Screenshot_2023-03-12_092315-removebg-preview.png"
+                alt="Calculator" id="calculator">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285275976519721/Screenshot_2023-03-12_092142-removebg-preview.png"
+                alt="Eraser" id="eraser">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084285427118264330/Screenshot_2023-03-12_092242-removebg-preview.png"
+                alt="Watch" id="watch">
+            <img src="https://cdn.discordapp.com/attachments/912732499069775992/1084500135574241340/Screenshot_2023-03-12_233435-removebg-preview.png"
+                alt="ID" id="id"><br /><br />
+            <p id="coord">X, Y:</p>
         </div>
     </div>
 </body>
